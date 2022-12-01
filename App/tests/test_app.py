@@ -87,15 +87,15 @@ class PublicationUnitTests(unittest.TestCase):
         coauthors = []
         author = Author("Bob Moog", "05/08/2001", "BSc. Computer Science")
         authors.append(author)
-        coauthor = Author("Bob Dule", "06/09/2002", "BSc. Computer Engineering")
-        coauthors.append(coauthor)
-        publication = Publication("Intro to Computer Science", authors, coauthors)
+        #coauthor = Author("Bob Dule", "06/09/2002", "BSc. Computer Engineering")
+        #coauthors.append(coauthor)
+        publication = Publication("Intro to Computer Science", authors)
         publication_json = publication.toJSON()
         self.assertDictEqual(publication_json, {
             "id": None,
             "title": "Intro to Computer Science",
             "authors": [author.toJSON() for author in authors],
-            "coauthors": [coauthor.toJSON() for coauthor in coauthors]
+            #"coauthors": [coauthor.toJSON() for coauthor in coauthors]
         })
 
 '''

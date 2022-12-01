@@ -1,8 +1,8 @@
 from App.models import Author
 from App.database import db
-#test commit
-def create_author(name, dob, qualifications):
-    new_author = Author(name=name, dob=dob, qualifications=qualifications)
+
+def create_author(firstName, lastName, dob, email, qualifications):
+    new_author = Author(firstName=firstName, lastName=lastName, dob=dob, email=email, qualifications=qualifications)
     db.session.add(new_author)
     db.session.commit()
     return new_author
@@ -15,18 +15,18 @@ def get_all_authors():
 
 def get_all_authors_json():
     authors = Author.query.all()
-    if not Author:
+    if not authors:
         return []
     authors = [author.toJSON() for author in authors]
     return authors
 
-def get_author_by_name(name):
-    print(name)
-    authors = Author.query.filter_by(name=name)
+def get_author_by_name(firstName, lastName):
+    print(firstName + " " + lastName)
+    authors = Author.query.filter_by(firstName=firstName, lastName=lastName)
     authors = [author for author in authors]
     # this code should be in a different method
     if not authors:
-        new_author = create_author(name=name, dob=None, qualifications=None)
+        new_author = create_author(firstName=firstName, lastName=lastName, dob=None, email=None, qualifications=None)
         authors = [new_author]
         return authors
     return authors

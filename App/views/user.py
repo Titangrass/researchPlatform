@@ -59,21 +59,44 @@ def get_publications():
         pubs = filter(lambda pub: query in pub['title'].lower(), pubs)
     return jsonify(list(pubs)), 200
         
-
+"""
 @user_views.route('/publications', methods=["POST"])
 @jwt_required()
 def post_publication():
     data = request.get_json()
     author_names = data['authors']
-    coauthor_names = data['coauthors']
+    #coauthor_names = data['coauthors']
     authors = sum ( [get_author_by_name(name) for name in author_names], [] )
     coauthors = sum ( [get_author_by_name(name) for name in coauthor_names], [] )
     # return jsonify(author_names)
     try:
-        new_pub = create_publication(data['title'], authors, coauthors)
+        new_pub = create_publication(data['title'], authors)
     except Exception as e:
         return f'Could not create due to exception: {e.__class__}', 400
     return new_pub.toJSON(), 201
+"""
+@user_views.route('/publications', methods=["POST"])
+@jwt_required()
+def post_publication():
+    data = request.get_json()
+    author_ids = data['authors']
+    #coauthor_names = data['coauthors']
+    #authors = sum ( [get_author(id) for id in author_ids], [] )
+    authors = []
+    for id in author_ids:
+        if get_author(id):
+            authors.append(id)
+        else:
+            new_author = create_author(data['firstName'], data['lastName'], data['dob'], data['email'], data['qualifications'])
+            authors.append(new_author)
+    #coauthors = sum ( [get_author_by_name(name) for name in coauthor_names], [] )
+    # return jsonify(author_names)
+    try:
+        new_pub = create_publication(data['publisher'], data['title'], data['year'], data['doi'], data['url'], authors)
+    except Exception as e:
+        return f'Could not create due to exception: {e.__class__}', 400
+    return new_pub.toJSON(), 201
+    
 
 @user_views.route('/author', methods=["POST"])
 @jwt_required()
@@ -81,15 +104,22 @@ def create_author_profile():
     data = request.get_json()
     # return jsonify(data)
     try:
-        new_author = create_author(data['name'], data['dob'], data['qualifications'])
+        new_author = create_author(data['firstName'], data['lastName'], data['dob'], data['email'], data['qualifications'])
     except Exception as e:
         return f'Could not create due to exception: {e.__class__}', 400 
     return new_author.toJSON(), 201
 
+"""
 @user_views.route('/author', methods=["GET"])
 def get_author_profile():
     authors = get_all_authors_json()
     return jsonify(authors)
+"""
+@user_views.route('/author', methods=["GET"])
+def get_author_profile():
+    args = request.args
+    author= args.get('author_id')
+    return jsonify(author)
 
 @user_views.route('/pubtree', methods=['GET'])
 def get_pub_tree():
@@ -100,3 +130,4 @@ def get_pub_tree():
 
     pubs = get_author_publications(author_id)
     return jsonify(pubs)
+

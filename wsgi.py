@@ -126,7 +126,7 @@ publication_cli = AppGroup('pub', help='pub object commands')
 
 @publication_cli.command("create", help="Creates a publication")
 @click.option("--author_ids", "-a", multiple=True)
-@click.option("--coauthor_ids", "-ca", multiple=True)
+#@click.option("--coauthor_ids", "-ca", multiple=True)
 @click.argument("title", default="Computer Science 1st Edition")
 def create_publication_command(title, author_ids, coauthor_ids):
     authors = [get_author(id) for id in author_ids]
@@ -140,6 +140,7 @@ def list_publications():
     publications = get_all_publications_json()
     print(publications)
 
+"""
 @publication_cli.command("create_names")
 @click.option("--author_names", "-A", multiple=True)
 @click.option("--coauthor_names", "-CA", multiple=True)
@@ -152,6 +153,6 @@ def create_publication_command(title, author_names, coauthor_names):
     # a = get_author(author_ids)
     create_publication(title, authors, coauthors)
     print(f'{title} created!')
-
+"""
 
 app.cli.add_command(publication_cli)

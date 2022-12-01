@@ -1,8 +1,8 @@
 from App.models import Publication
 from App.database import db
 
-def create_publication(title, authors, coauthors):
-    new_publication = Publication(title, authors, coauthors)
+def create_publication(publisher, title, year, doi, authors):
+    new_publication = Publication(publisher, title, year, doi, authors)
     db.session.add(new_publication)
     db.session.commit()
     return new_publication
