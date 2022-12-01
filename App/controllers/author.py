@@ -1,6 +1,6 @@
 from App.models import Author
 from App.database import db
-
+#test commit
 def create_author(name, dob, qualifications):
     new_author = Author(name=name, dob=dob, qualifications=qualifications)
     db.session.add(new_author)
