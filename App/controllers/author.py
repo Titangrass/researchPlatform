@@ -38,10 +38,27 @@ def get_author_publications(id):
     return author.get_publications()
 
 def getpublicationtree(id):
-    author = get_author(id)
+    authors = []
+    publications = []
+    author = get_author(id) #root author we work from
     if not author:
         return []
-    return author.get_publications()
+    
+    authorPublications = author.get_publications() #we have all the publications of this author here
+    for publication in authorPublications: #for 1 publication in all author's publications
+        authors.append(get_all_authors()) #get all coauthors for each publication
+    for coAuthor in authors:
+        coAuthorPublications = coAuthor.get_publications() #we have all of 1 coAuthor's publications here 
+        for coAuthorPublication in coAuthorPublications:
+            authors.append(get_all_authors()) # add co..coAuthors to author lists
+
+ # ensure that get_all_authors() does so for that each publication and its not all authors listed in the database
+ # if so thats fine, we can just do a check to ensure that author is listed in the publication's authors
+ # we want all authors listed for that publication       
+
+
+
+
 
 # search that retrieves all publications of the author 
 # as well as the publications of any co-authors of the author, 
