@@ -47,8 +47,8 @@ def getpublicationtree(id):
 # as well as the publications of any co-authors of the author, 
 # and the co-authors of their co-authors etc.
 
-# getpublicationtree needs 
-# author root  
+# author is the root to search branches associated with 
+# getpublicationtree needs: 
 # all publications of this author 
 # and any publication of any coauthor associated wih this author
 # # functionality in get_publications()
@@ -58,7 +58,7 @@ def getpublicationtree(id):
 
 # search for author done by get_author(id)
 # get publications of this author done by get_publications()
-# display publications of author 
+#   *display author publications here* 
 # get publication has a list of coauthors 
 # for all authors of current Publication <- this should be recursive until list is exhausted
 #     get author publications 
