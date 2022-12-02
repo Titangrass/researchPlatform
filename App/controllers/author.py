@@ -58,15 +58,21 @@ def getpublicationtree(id):
 
 # search for author done by get_author(id)
 # get publications of this author done by get_publications()
-# get publication has a list of authors 
-# for all authors of current Publication 
-#     get their publications and log each subsequent publication's authors 
+# display publications of author 
+# get publication has a list of coauthors 
+# for all authors of current Publication <- this should be recursive until list is exhausted
+#     get author publications 
+#       display author publications 
 
 # need to store:
 # all authors 
 # all publications 
 
+
+
+
+# alt approach?
 # a binary tree where each node is an author and each has a publication/s
 # we do a bfs that looks at every node and tests 
 # if it has a publication in common with the current list of authors 
-# and we do this search until the list of authors is exhausted
+# and we do this search until the list of authors and publications are exhausted
