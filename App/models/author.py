@@ -25,6 +25,13 @@ class Author(db.Model):
         # return [publication.toJSON() for publication in self.publications]
         return [publication.toJSON() for publication in self.publications]
 
+    def add_pub(self, publication, author_no ):
+        pubs = []
+        #pubs.append(publication)
+        pubs.insert(author_no, publication)
+        self.publications = pubs
+
+
     def toJSON(self):
         return{
             'id': self.id,

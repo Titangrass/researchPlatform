@@ -92,7 +92,7 @@ def post_publication():
     #coauthors = sum ( [get_author_by_name(name) for name in coauthor_names], [] )
     # return jsonify(author_names)
     try:
-        new_pub = create_publication(data['publisher'], data['title'], data['year'], data['doi'], data['url'], authors)
+        new_pub = create_publication(data['publisher'], data['title'], data['year'], data['doi'], authors)
     except Exception as e:
         return f'Could not create due to exception: {e.__class__}', 400
     return new_pub.toJSON(), 201
@@ -121,6 +121,7 @@ def get_author_profile():
     author= args.get('author_id')
     return jsonify(author)
 
+"""
 @user_views.route('/pubtree', methods=['GET'])
 def get_pub_tree():
     args = request.args
@@ -130,4 +131,12 @@ def get_pub_tree():
 
     pubs = get_author_publications(author_id)
     return jsonify(pubs)
+"""
 
+@user_views.route('/pubtree', methods=['GET'])
+def get_pub_tree():
+    args = request.args
+    author_id = args.get('author_id')
+    if not author_id:
+        return "Must provide ID.", 400
+    get_pubtree(author_id)

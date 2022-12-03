@@ -1,14 +1,16 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
 
-class User(db.Model):
+#class User(db.Model):
+class User(Author):
     id = db.Column(db.Integer, primary_key=True)
-    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+    #author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
     username =  db.Column(db.String, nullable=False)
     password = db.Column(db.String(120), nullable=False)
 
-    def __init__(self, author_id, username, password):
-        self.author_id = author_id
+    def __init__(self, username, password, firstName, lastName, dob, email, qualifications):
+        #self.author_id = author_id
+        super().__init__(firstName, lastName, dob, email, qualifications)
         self.username = username
         self.set_password(password)
 

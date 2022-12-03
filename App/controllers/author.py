@@ -37,59 +37,65 @@ def get_author_publications(id):
         return []
     return author.get_publications()
 
+"""
 def getpublicationtree(id):
-    authors = []
-    publications = []
-    author = get_author(id) #root author we work from
+    author = get_author(id)
     if not author:
         return []
+    return author.get_publications()
+"""
+
+def add_edge(graph, auth1, auth2, pub):
     
-    authorPublications = author.get_publications() #we have all the publications of this author here
-    for publication in authorPublications: #for 1 publication in all author's publications
-        authors.append(get_all_authors()) #get all coauthors for each publication
-    for coAuthor in authors:
-        coAuthorPublications = coAuthor.get_publications() #we have all of 1 coAuthor's publications here 
-        for coAuthorPublication in coAuthorPublications:
-            authors.append(get_all_authors()) # add co..coAuthors to author lists
+    if graph[auth1][auth2]:
+        graph[auth1][auth2].append(pub) #check to see if there is a list of publications present
+    else:
+        graph[auth1][auth2] = [pub] #if there is no list, add the publication to the list
+        
+def print_graph(graph):
+    
+    n = len(graph)
+    for i in range(n):
+        print(f'\t{i+1}\t', end=' |')
+    for i in range(n):
+        print(f'\n {i+1}', end=' |') 
+    for j in range(n):
+        print(graph[i][j], end=' |')
+        
+        
+def build_graph(authors):
+    pubs = Publication.query.all()
+    num = len(authors)
+    graph = [[ None for i in range(num)] for j in range(num)]
+    for pub in pubs:
+        for a1 in pub.authors:
+            for a2 in pub.authors:
+                add_edge(graph, authors.index[a1], authors.index[a2], pub)
+    return graph
 
- # ensure that get_all_authors() does so for that each publication and its not all authors listed in the database
- # if so thats fine, we can just do a check to ensure that author is listed in the publication's authors
- # we want all authors listed for that publication       
-
-
-
-
-
-# search that retrieves all publications of the author 
-# as well as the publications of any co-authors of the author, 
-# and the co-authors of their co-authors etc.
-
-# author is the root to search branches associated with 
-# getpublicationtree needs: 
-# all publications of this author 
-# and any publication of any coauthor associated wih this author
-# # functionality in get_publications()
-# we have basically a mesh network of authors and publications 
-# each of which may or may not be connected to each other and
-# we need to find the path that links all coauthours to the author in the search
-
-# search for author done by get_author(id)
-# get publications of this author done by get_publications()
-#   *display author publications here* 
-# get publication has a list of coauthors 
-# for all authors of current Publication <- this should be recursive until list is exhausted
-#     get author publications 
-#       display author publications 
-
-# need to store:
-# all authors 
-# all publications 
-
-
-
-
-# alt approach?
-# a binary tree where each node is an author and each has a publication/s
-# we do a bfs that looks at every node and tests 
-# if it has a publication in common with the current list of authors 
-# and we do this search until the list of authors and publications are exhausted
+def get_pubtree(author):
+    
+    authors = Authors.query.all()
+    num = len(authors)
+    graph = build_graph(authors)
+    print_graph(graph)
+    a_set = {author}
+    stack = [author]
+    while stack:
+        
+        auth = stack.pop()
+        author_no = authors.index(auth)
+        print(f"{auth.id} worked with authors", end=":")
+        row = graph[author_no]
+        for i in range(num):
+            if row[i] != None and not (authors[i] in a_set):
+                stack.append(authors[i])
+                print(f'{authors[i].id}', end =",")
+                a_set.add(authors[i])
+        print('\n')
+        all_pubs = set()
+        for a in a_set:
+            for p in a.publications:
+                all_pubs.add(p)
+        print(all_pubs)
+    
