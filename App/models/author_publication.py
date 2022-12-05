@@ -8,7 +8,7 @@ AuthorPublication = db.Table(
     #authpub_id = db.Column(db.Integer, primary_key=True)
     db.Column("author_id", db.ForeignKey("author.id"), primary_key=True),
     db.Column("publication_id", db.ForeignKey("publication.id"), primary_key=True),
-    authors = db.relationship('Author', backref='authorpublication', lazy=True),
+    authors = db.relationship("Author", backref='authorpublication', lazy=True),
     publications = db.relationship('Publication', backref='authorpublication', lazy=True),
     auth_no = db.Column("auth_no", db.Integer)
     )
@@ -18,3 +18,4 @@ AuthorPublication = db.Table(
     db.Column("author_id", db.ForeignKey("author.id"), primary_key=True),
     db.Column("publication_id", db.ForeignKey("publication.id"), primary_key=True)
 )"""
+
