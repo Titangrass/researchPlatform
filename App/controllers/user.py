@@ -10,8 +10,8 @@ def create_user(username, password):
 def get_user_by_username(username):
     return User.query.filter_by(username=username).first()
 
-def get_user(id):
-    return User.query.get(id)
+def get_user(user_id):
+    return User.query.get(user_id)
 
 def get_all_users():
     return User.query.all()
@@ -23,8 +23,8 @@ def get_all_users_json():
     users = [user.toJSON() for user in users]
     return users
 
-def update_user(id, username):
-    user = get_user(id)
+def update_user(user_id, username):
+    user = get_user(user_id)
     if user:
         user.username = username
         db.session.add(user)

@@ -16,12 +16,21 @@ from datetime import date
 app = create_app()
 migrate = get_migrate(app)
 
+'''
+Generic Commands
+'''
 # This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
 def initialize():
     create_db(app)
     print('database intialized')
 
+@app.cli.command("pub-tree")
+def print_tree():
+    print(Author.query.all())
+    authid = input("Enter authorId: ")
+    author = Author.query.get(authid)
+    get_pubtree(authid)
 '''
 User Commands
 '''
@@ -52,16 +61,12 @@ def list_user_command(format):
 
 app.cli.add_command(user_cli) # add the group to the cli
 
-
-'''
-Generic Commands
-'''
-
+"""
 @app.cli.command("init")
 def initialize():
     create_db(app)
     print('database intialized')
-
+"""
 '''
 Test Commands
 '''
@@ -105,14 +110,16 @@ app.cli.add_command(test)
 author_cli = AppGroup('author', help='author object commands') 
 
 @author_cli.command("create", help="Creates an author")
-@click.argument("name", default="rob")
-# @click.argument("dob", default="05/08/2001")
+@click.argument("firstName", default="rob")
+@click.argument("lastName", default="bass")
+#@click.argument("dob", default="05/08/2001")
 @click.option("--dob", "-d")
+@click.argument("email", default="robbass@mail")
 # @click.argument("qualifications", default="BSc. Science")
 @click.option("--qualifications", "-q")
-def create_author_command(name, dob, qualifications):
-    create_author(name, dob, qualifications)
-    print(f'{name} created!')
+def create_author_command(firstName, lastName, dob, email, qualifications):
+    create_author(firstName, lastName, dob, email, qualifications)
+    print(f'{firstName} {lastName} created!')
 
 @author_cli.command("list")
 def list_authors():
@@ -127,12 +134,15 @@ publication_cli = AppGroup('pub', help='pub object commands')
 @publication_cli.command("create", help="Creates a publication")
 @click.option("--author_ids", "-a", multiple=True)
 #@click.option("--coauthor_ids", "-ca", multiple=True)
+@click.argument("publisher", default="Stanford")
 @click.argument("title", default="Computer Science 1st Edition")
-def create_publication_command(title, author_ids, coauthor_ids):
+@click.argument("year", default="2005")
+@click.argument("doi", default="10.978.12345/99990")
+def create_publication_command(publisher, title, year, doi, author_ids):
     authors = [get_author(id) for id in author_ids]
-    coauthors = [get_author(id) for id in coauthor_ids]
+    #coauthors = [get_author(id) for id in coauthor_ids]
     # a = get_author(author_ids)
-    create_publication(title, authors, coauthors)
+    create_publication(publisher, title, year, doi, author_ids)
     print(f'{title} created!')
 
 @publication_cli.command("list")

@@ -15,8 +15,7 @@ class Publication(db.Model):
     title = db.Column(db.String(120), nullable=False, unique=True)
     year = db.Column(db.String)
     doi = db.Column(db.String)
-    authors = db.relationship("Author", secondary=AuthorPublication, lazy=True, backref=db.backref('publication', lazy=True))
-    #authors = db.relationship(Author, secondary=AuthorPublication, backref='publication')
+    authors = db.relationship("Author", secondary=AuthorPublication, backref=db.backref('publication'))
 
     def __init__(self, publisher, title, year, doi, authors):
         self.publisher = publisher

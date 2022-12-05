@@ -5,8 +5,8 @@ from .author_publication import *
 
 #class User(db.Model):
 class User(Author):
-    id = db.Column(db.Integer, primary_key=True)
-    #author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+    user_id = db.Column(db.Integer, primary_key=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
     username =  db.Column(db.String, nullable=False)
     password = db.Column(db.String(120), nullable=False)
 
@@ -18,7 +18,7 @@ class User(Author):
 
     def toJSON(self):
         return{
-            'id': self.id,
+            'user_id': self.user_id,
             'author_id': self.author_id,
             'username': self.username
         }
