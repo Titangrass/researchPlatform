@@ -156,3 +156,5 @@ def create_publication_command(title, author_names, coauthor_names):
 """
 
 app.cli.add_command(publication_cli)
+
+
