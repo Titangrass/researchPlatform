@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}Add Author{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <body>
+            <div class="addAuthor">
+                <form>
+                    <br>
+                    <br>
+                    <div class="aut">
+                        <p>First Name:</p>
+                        <input type="text" name="firstName" class="input" required>
+                    </div>
+                    <div class="aut">
+                        <p>Last Name:</p>
+                        <input type="text" name="lastName" class="input" required>
+                    </div>
+                    <div class="aut">
+                        <p>Date Of Birth:</p>
+                        <input type="text" name="dob" class="input" required>
+                    </div>
+                    <div class="aut">
+                        <p>Email:</p>
+                        <input type="text" name="email" class="input" required>
+                    </div>
+                    <div class="aut">
+                        <p>Qualifications:</p>
+                        <input type="text" name="qualifications" class="input" required>
+                    </div>
+                    <br>
+                    <button class="createAuth" type="submit">Create Author</button>
+                </form>
+            </div>
+        </body>
+{% endblock %}
