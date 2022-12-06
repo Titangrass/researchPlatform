@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}UWI Research Platform{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <body>
+            <div class="editAuthor">
+                <form>
+                    <br>
+                    <div class="eaut">
+                        <p>First Name:</p>
+                        <input type="text" placeholder="First Name" name="firstName" class="editin">
+                    </div>
+                    <div class="eaut">
+                        <p>Last Name:</p>
+                        <input type="text" placeholder="Last Name" name="lastName" class="editin">
+                    </div>
+                    <div class="eaut">
+                        <p>Date Of Birth:</p>
+                        <input type="text" placeholder="Date of Birth" name="dob" class="editin">
+                    </div>
+                    <div class="eaut">
+                        <p>Email:</p>
+                        <input type="text" placeholder="Email" name="email" class="editin">
+                    </div>
+                    <div class="eaut">
+                        <p>Qualifications:</p>
+                        <input type="text" placeholder="Qualifications" name="qualifications" class="editin">
+                    </div>
+                    <br>
+                    <button class="editAuth" type="submit">Save Changes</button>
+                </form>
+            </div>
+        </body>
+{% endblock %}
