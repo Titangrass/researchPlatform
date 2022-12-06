@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}UWI Research Platform{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <body>
+            <div class="pubTree">
+
+                    <ul id="myUL">
+                        <li><span class="caret">Author Name</span>
+                            <ul class="nested">
+                                <li><span class="caret">Co Author Name</span>
+                                    <ul class="nested">
+                                        <li>
+                                            <div class="pub2">
+                                                <br>
+                                                <p>Publication Title</p>
+                                                <button class="viewPub">View</button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="pub2">
+                                                <br>
+                                                <p>Publication Title</p>
+                                                <button class="viewPub">View</button>
+                                            </div>
+                                        </li>
+                                <li><span class="caret">Co Author Name</span>
+                                    <ul class="nested">
+                                        <li>
+                                            <div class="pub2">
+                                                <br>
+                                                <p>Publication Title</p>
+                                                <button class="viewPub">View</button>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="pub2">
+                                                <br>
+                                                <p>Publication Title</p>
+                                                <button class="viewPub">View</button>
+                                            </div>
+                                        </li>
+                                        <li><span class="caret">Co Author Name</span>
+                                            <ul class="nested">
+                                                <li>
+                                                    <div class="pub2">
+                                                        <br>
+                                                        <p>Publication Title</p>
+                                                        <button class="viewPub">View</button>
+                                                    </div>
+                                                </li>
+                                                <li><div class="pub2">
+                                                        <br>
+                                                        <p>Publication Title</p>
+                                                        <button class="viewPub">View</button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            </li>
+                            </ul>
+                        </li>
+                    </ul>                 
+  
+            </div>
+
+            
+            <script>
+
+                var toggler = document.getElementsByClassName("caret");
+                var i;
+                
+                for (i = 0; i < toggler.length; i++){
+                    toggler[i].addEventListener("click", function(){
+                        this.parentElement.querySelector(".nested").classList.toggle("active");
+                        this.classList.toggle("caret-down");
+                    });
+                }
+
+            </script>
+        </body>
+{% endblock %}
