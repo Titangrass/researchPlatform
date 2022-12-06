@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}UWI Research Platform{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <body>
+            <div class="addPublication">
+                <form>
+                    <br>
+                    <div class="pub">
+                        <p>Publication Title:</p>
+                        <input type="text" name="title" class="input" required>
+                    </div>
+                    <div class="pub">
+                        <p>Co Author Name:</p>
+                        <input type="text" name="Co Author Name" class="input" required>
+                    </div>
+                    <div class="pub">
+                        <p>Publisher:</p>
+                        <input type="text" name="publisher" class="input" required>
+                    </div>
+                    <div class="pub">
+                        <p>Publication Year:</p>
+                        <input type="text" name="year" class="input" required>
+                    </div>
+                    <div class="pub">
+                        <p>Publication DOI:</p>
+                        <input type="text" name="doi" class="input" required>
+                    </div>
+                    <div class="pub">
+                        <p>Publication URL:</p>
+                        <input type="text" name="url" class="input" required>
+                    </div>
+                    <button class="createPub" type="submit">Add Publication</button>
+                </form>
+            </div>
+        </body>
+{% endblock %}
