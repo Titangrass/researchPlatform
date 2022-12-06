@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}UWI Research Platform{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <div class="login">
+                <form>
+                    <div class="log">
+                        <p>Username:</p>
+                        <input type="text" name="Username" class="input" required>
+                    </div>
+                    <div class="log">
+                        <p>Password:</p>
+                        <input type="text" name="Password" class="input" required>
+                    </div>
+                    <br>
+                    <button class="log" type="submit">Login</button>
+                </form>
+            </div>
+{% endblock %}
