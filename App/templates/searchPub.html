@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}UWI Research Platform{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <body>
+            <form class="search" action="#">
+                <input type="text" placeholder="Search Publications" name="search">
+                <button type="submit"><i class="fa fa-search"></i></i></button>
+            </form>
+            <div id="sP" class="searchPub">
+                    <div class="pub3">
+                        <br>
+                        <p>Publication Title</p>
+                        <button class="viewPub">View</button>
+                    </div>
+                    <div class="pub3">
+                        <br>
+                        <p>Publication Title</p>
+                        <button class="viewPub">View</button>
+                    </div>
+            </div>
+        </body>
+{% endblock %}
