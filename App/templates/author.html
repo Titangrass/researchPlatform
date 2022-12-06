@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}UWI Research Platform{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <body>
+            <div class="author">
+                <button class="edit" type="button">Edit Profile</button>
+                <br>
+                <div class="autInfo">
+                    <br>
+                    <p>First Name </p>
+                    <br>
+                    <p>Last Name</p>
+                    <br>
+                    <p>Date Of Birth</p>
+                    <br>
+                    <p>Email</p>
+                    <br>
+                    <p>Qualifications</p>
+                </div>
+                <button class="getAut" type="submit">Author Publications</button>
+                <br>
+                <button class="getAut2" type="submit">Author Publication Tree</button>
+            </div>
+        </body>
+{% endblock %}
