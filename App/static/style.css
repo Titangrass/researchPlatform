@@ -33,14 +33,10 @@ div.nav-wrapper a.logo{
 }
 
 body{
-    width: 100%;
-    height: 90.35%;
     background-image: url(https://cdn.pixabay.com/photo/2017/07/31/16/12/laptop-2558666_960_720.jpg);
     position: relative;
     background-size: cover;
-    background-position: center;
-    content: " ";
-    margin-left: 0px;
+    background-position: inherit;
 }
 
 /*Login CSS*/
@@ -330,4 +326,154 @@ div.pub1 button.viewPub{
 }
 
 /*Search Publication CSS*/
+
+form.search input{
+    margin-top: 35px;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid black;
+    float: left;
+    width: 55%;
+    background: white;
+    margin-left: 20%;
+}
+
+form.search button{
+    margin-top: 35px;
+    float: left;
+    width: 5%;
+    padding: 10px;
+    background: #87ceeb;
+    color: black;
+    font-size: 17px;
+    border: 1px solid black;
+    border-left: none; 
+    cursor: pointer;
+}
+
+form.search button:hover{
+    background-color: black;
+    color: white;
+}
+
+form.search::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+div.searchPub{
+    margin-top: 30px;
+    margin-left: 20%;
+    height: 350px;
+    width: 60%;
+    padding: 20px;
+}
+
+
+
+div.pub3{
+    margin-left: 10%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    width: 80%;
+    height: 100px;
+    background-color: #87ceeb;
+    border-radius: 15px;
+}
+
+div.pub3 p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    text-align: left;
+    margin-left: 20px;
+}
+
+div.pub3 button.viewPub{
+    background-color: white;
+    margin-left: 70%;
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+    color: black;
+}
+
 /*Publication Tree CSS*/
+
+div.pubTree{
+    margin-top: 30px;
+    margin-left: 20%;
+    background-color: #87ceeb;
+    height: 550px;
+    width: 60%;
+    outline: 3px solid black;
+    padding: 20px;
+    overflow-y: scroll;
+}
+
+
+/* Remove default bullets */
+ul, #myUL {
+    list-style-type: none;
+  }
+  
+  /* Remove margins and padding from the parent ul */
+  #myUL {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the caret/arrow */
+  .caret {
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+  }
+  
+  /* Create the caret/arrow with a unicode, and style it */
+  .caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  
+  /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+  .caret-down::before {
+    transform: rotate(90deg);
+  }
+  
+  /* Hide the nested list */
+  .nested {
+    display: none;
+  }
+  
+  /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+  .active {
+    display: block;
+  }
+
+div.pub2{
+    margin-left: 10%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    width: 80%;
+    height: 100px;
+    background-color: azure;
+    border-radius: 15px;
+}
+
+div.pub2 p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    text-align: left;
+    margin-left: 20px;
+}
+
+div.pub2 button.viewPub{
+    background-color: white;
+    margin-left: 70%;
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+    color: black;
+}
