@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Research Platform{% endblock %}
+{% block page %}UWI Research Platform{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <body>
+            <div class="autPub">
+                <br>
+                <p>Author Name Publications</p>
+                <button class="addPub" href="addPublication.html">Add Publication</button>
+                <div class="autPubs">
+                    <div class="pub1">
+                        <br>
+                        <p>Publication Title</p>
+                        <button class="viewPub">View</button>
+                    </div>
+                    <div class="pub1">
+                            <br>
+                            <p>Publication Title</p>
+                            <button class="viewPub">View</button>
+                        </div>
+                        <div class="pub1">
+                                <br>
+                                <p>Publication Title</p>
+                                <button class="viewPub">View</button>
+                            </div>
+                            <div class="pub1">
+                                    <br>
+                                    <p>Publication Title</p>
+                                    <button class="viewPub">View</button>
+                                </div>
+                </div>
+            </div>
+        </body>
+{% endblock %}
