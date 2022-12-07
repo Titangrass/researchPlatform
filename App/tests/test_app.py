@@ -32,23 +32,23 @@ LOGGER = logging.getLogger(__name__)
 class UserUnitTests(unittest.TestCase):
 
     def test_new_user(self):
-        user = User("bob", "bobpass")
+        user = User("bob", "bobpass", "Bob", "Moog", "05/08/2001", "bob@mail", "BSc. Computer Science")
         assert user.username == "bob"
 
     def test_user_toJSON(self):
-        user = User("bob", "bobpass")
+        user = User("bob", "bobpass", "Bob", "Moog", "05/08/2001", "bob@mail", "BSc. Computer Science")
         user_json = user.toJSON()
         self.assertDictEqual(user_json, {"user_id":None, "username":"bob"})
     
     def test_hashed_password(self):
         password = "mypass"
         hashed = generate_password_hash(password, method='sha256')
-        user = User("bob", password)
+        user = User("bob", password, "Bob", "Moog", "05/08/2001", "bob@mail", "BSc. Computer Science")
         assert user.password != password
 
     def test_check_password(self):
         password = "mypass"
-        user = User("bob", password)
+        user = User("bob", password, "Bob", "Moog", "05/08/2001", "bob@mail", "BSc. Computer Science")
         assert user.check_password(password)
 
 class AuthorUnitTests(unittest.TestCase):
@@ -82,9 +82,9 @@ class PublicationUnitTests(unittest.TestCase):
         publication = Publication("Grandburgh", "Intro to Computer Science", "2018", "10.1080/02626667.2018.1560449", authors)
         assert (
             publication.publisher=="Grandburgh" 
-            publication.title=="Intro to Computer Science"
-            publication.year=="2018" 
-            publication.doi=="10.1080/02626667.2018.1560449" 
+            and publication.title=="Intro to Computer Science"
+            and publication.year=="2018" 
+            and publication.doi=="10.1080/02626667.2018.1560449" 
             and publication.authors==authors 
             #and publication.coauthors==coauthors
         )
@@ -128,12 +128,12 @@ def empty_db():
 
 class UsersIntegrationTests(unittest.TestCase):
     def test_authenticate(self):
-        user = create_user("bob", "bobpass")
+        user = create_user("bob", "bobpass", "Bob", "Moog", "05/08/2001", "bob@mail", "BSc. Computer Science")
         assert authenticate("bob", "bobpass") != None
 
     def test_create_user(self):
         # user = create_user("bob", "bobpass")
-        user = create_user("rick", "bobpass")
+        user = create_user("rick", "rickpass", "Rick", "White", "9/6/1997", "rick@mail", "BSc. Computer Science")
         assert user.username == "rick"
 
     def test_get_all_users_json(self):
@@ -161,6 +161,14 @@ class AuthorIntegrationTests(unittest.TestCase):
             "dob":datetime.strptime("05/08/2001", "%d/%m/%Y"),
             "email": "bob@mail",
             "qualifications":"BSc. Computer Science"
+            },
+            {
+            'id': 2,
+            "firstName": "Rick",
+            "lastName": "White",
+            "dob":datetime.strptime("9/6/1997", "%d/%m/%Y"),
+            "email": "rick@mail",
+            "qualifications":"BSc. Computer Science"
             }
             ], author_json)
 
@@ -186,7 +194,7 @@ class PublicationIntegrationTests(unittest.TestCase):
                 "publisher": "Grandburgh",
                 "title":"Intro to Computer Science",
                 "year": "2018",
-                "doi": "10.1080/02626667.2018.1560449" 
+                "doi": "10.1080/02626667.2018.1560449", 
                 "authors":[
                     {
                         "id": 1,

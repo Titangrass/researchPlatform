@@ -19,7 +19,7 @@ class User(Author):
     def toJSON(self):
         return{
             'user_id': self.user_id,
-            'author_id': self.author_id,
+            #'author_id': self.author_id,
             'username': self.username
         }
 
