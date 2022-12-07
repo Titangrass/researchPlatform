@@ -139,5 +139,5 @@ def get_pub_tree():
     author_id = args.get('author_id')
     if not author_id:
         return "Must provide ID.", 400
-    get_pubtree(author_id)
+    return jsonify(get_pubtree(author_id))
 
